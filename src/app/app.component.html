@@ -1,11 +1,16 @@
 <div class="row mt-5">
   <mat-card class="card mx-auto">
+    <h1 class="text-center">{{countdown}}</h1>
     <p class="text-center">Network Gaming</p>
   </mat-card>
+
 
 </div>
 <div class="container text-center py-5">
   <button (click)="start()" mat-raised-button color="primary">Join</button>
+  <button (click)="hit()" mat-raised-button color="secondary">hit</button>
+  <p>{{leaderboardData}}</p>
+
 </div>
 
 
