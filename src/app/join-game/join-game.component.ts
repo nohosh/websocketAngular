@@ -55,6 +55,7 @@ export class JoinGameComponent implements OnInit {
     try {
       await this.http.post<ResponseDTO>(`http://localhost:8089/join`, JSON.stringify(formValue)).subscribe(console.log, console.log);
       this.submit = true;
+      localStorage.setItem('joined', 'true');
       this.dialogRef.close();
     } catch (err) {
 
