@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { pipe } from 'rxjs';
-import { webSocket } from 'rxjs/webSocket';
-import Game from './game-state/game';
-import { ResponseDTO } from './responseDTO';
 import initWebSocket from './websocket';
+import { MatDialog } from '@angular/material/dialog';
+import { JoinGameComponent } from './join-game/join-game.component';
+import { GameEventType, SwitchUIEventType } from './game-state/game.types';
+import Game from './game-state/game';
+
 
 @Component({
   selector: 'app-root',
@@ -12,22 +13,25 @@ import initWebSocket from './websocket';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private http: HttpClient) { }
-  title = 'ws-app';
-  socket = webSocket(`ws://localhost:8089/subscribe`);
-  x = 0;
-  leaderboardData = ""
-  countdown = "";
-  start() {
-    initWebSocket();
+  constructor(
+    private http: HttpClient,
+    public dialog: MatDialog) { }
+  appState: SwitchUIEventType;
+
+  join() {
+    const dialogRef = this.dialog.open(JoinGameComponent, {
+      width: '250px'
+    });
   }
-  hit() {
-    this.x++;
-    this.http.post<ResponseDTO>(`http://localhost:8089/join`, { "name": `sanchit${this.x}`, "first": Math.floor(Math.random() * 10) + 1, "second": Math.floor(Math.random() * 10) + 1 }).subscribe(console.log, console.log);
-  }
+  kill() { }
 
   ngOnInit() {
-    Game.ActiveRoundEvents.subscribe((data) => { this.leaderboardData = JSON.stringify(data); this.countdown = "" });
-    Game.CountingDownEvent.subscribe((data) => { this.countdown = JSON.stringify(data.data) });
+    initWebSocket();
+    Game.SwitchUIEvent.subscribe(event => {
+      console.log(event);
+      this.appState = event
+    })
+    Game.NotificationEvent.subscribe(console.log);
   }
 }
+

@@ -1,17 +1,20 @@
-<div class="row mt-5">
-  <mat-card class="card mx-auto">
-    <h1 class="text-center">{{countdown}}</h1>
+<!-- <mat-card class="card mx-auto">
+    <h1 *ngIf="countdown > 1" class="text-center">{{countdown}}</h1>
     <p class="text-center">Network Gaming</p>
   </mat-card>
-
-
 </div>
 <div class="container text-center py-5">
-  <button (click)="start()" mat-raised-button color="primary">Join</button>
-  <button (click)="hit()" mat-raised-button color="secondary">hit</button>
-  <p>{{leaderboardData}}</p>
-
-</div>
-
-
-<p></p>
+  <app-leaderboard></app-leaderboard>
+  <button (click)="join()" mat-raised-button color="primary" class="mr-2">Join</button>
+  <button (click)="kill()" mat-raised-button color="secondary">kill</button> -->
+<ng-container *ngIf="appState">
+  <ng-container [ngSwitch]="appState.type">
+    <app-game-waiting *ngSwitchCase="'Game Waiting'"></app-game-waiting>
+    <app-game-count-down [count]="appState.data" *ngSwitchCase="'Countdown Started'"></app-game-count-down>
+    <app-game-count-down [count]="appState.data" *ngSwitchCase="'Counting Down'"></app-game-count-down>
+    <app-game-started *ngSwitchCase="'Game Started'"></app-game-started>
+    <app-leaderboard [players]="appState.data.leader_board" *ngSwitchCase="'Played Round'"></app-leaderboard>
+    <app-game-result [winner]="appState.data" *ngSwitchCase="'Game Completed'"></app-game-result>
+  </ng-container>
+</ng-container>
+<button (click)="join()" mat-raised-button color="primary" class="mx-auto">Join</button>

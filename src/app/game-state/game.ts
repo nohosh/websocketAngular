@@ -1,9 +1,9 @@
 import { Subject } from "rxjs";
-import { ActiveRoundDTO, CountingDownEvent } from "./game.types";
+import { ActiveRoundEvent, GameEventType, GamePlayer, NotificationEventType, SwitchUIEventType } from "./game.types";
 
 const Game = {
-    ActiveRoundEvents: new Subject<ActiveRoundDTO>(),
-    CountingDownEvent: new Subject<CountingDownEvent>()
-}
+    NotificationEvent: new Subject<NotificationEventType>(),
+    SwitchUIEvent: new Subject<SwitchUIEventType>()
+};
 
 export default Game;

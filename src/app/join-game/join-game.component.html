@@ -1,0 +1,26 @@
+<div mat-dialog-content>
+    <form [formGroup]="joinForm" (ngSubmit)="submitHandler()">
+        <mat-form-field>
+            <input matInput placeholder="name" formControlName="name">
+            <mat-error *ngIf="name.touched">
+                already exist
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="number" placeholder="first number" formControlName="first">
+            <mat-hint>1-10</mat-hint>
+            <mat-error *ngIf="first.touched">
+                come on !
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input type="number" matInput placeholder="Second number" formControlName="second">
+            <mat-hint>1-10</mat-hint>
+            <mat-error *ngIf="second.touched">
+                you can do this...
+            </mat-error>
+        </mat-form-field>
+        <button type="submit" [disabled]="joinForm.invalid" mat-raised-button color="primary"
+            class="float-right">Join</button>
+    </form>
+</div>
