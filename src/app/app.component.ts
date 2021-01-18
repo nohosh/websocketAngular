@@ -19,20 +19,20 @@ export class AppComponent implements OnInit {
     public dialog: MatDialog) { }
   appState: SwitchUIEventType;
 
-  joined = localStorage.getItem('joined');
+  joined = JSON.parse(localStorage.getItem('joined'));
 
   join() {
     const dialogRef = this.dialog.open(JoinGameComponent, {
       width: '250px'
     });
-    dialogRef.afterClosed().subscribe(() => this.joined = localStorage.getItem('joined'));
+    dialogRef.afterClosed().subscribe(() => this.joined = JSON.parse(localStorage.getItem('joined')));
   }
-  kill() { }
+
 
   ngOnInit() {
     if (!this.joined) {
-      localStorage.setItem('joined', 'true');
-      this.joined = localStorage.getItem(this.joined);
+      localStorage.setItem('joined', 'false');
+      this.joined = JSON.parse(localStorage.getItem(this.joined));
     }
     initWebSocket();
     Game.SwitchUIEvent.subscribe(event => {

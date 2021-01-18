@@ -12,6 +12,12 @@ import { GamePlayer } from '../game-state/game.types';
         style({ opacity: 0, transform: 'scale(0.75)' }),
         animate(150, style({ opacity: 1, transform: 'scale(1)' }))
       ])
+    ]),
+    trigger('fade-in', [
+      transition('void => *', [
+        style({ opacity: 0, transform: 'translateY(-5%)' }),
+        animate(200, style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
     ])
   ]
 })

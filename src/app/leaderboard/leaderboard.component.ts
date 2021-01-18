@@ -25,9 +25,11 @@ import { ActiveRoundDTO } from '../game-state/game.types';
 export class LeaderboardComponent implements OnInit {
   @Input() rounds: ActiveRoundDTO[];
   constructor() { }
-
+  user;
   ngOnInit() {
-
+    if (localStorage.getItem('joined')) {
+      this.user = localStorage.getItem('player');
+    }
   }
 
 }

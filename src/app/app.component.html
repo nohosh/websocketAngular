@@ -1,6 +1,7 @@
 <nav class="navbar navbar-light bg-light">
   <a class="navbar-brand">The Game</a>
-  <button (click)="join()" mat-raised-button color="primary" [disabled]="joined" class="pull-right mt-2">Join</button>
+  <button (click)="join()" mat-raised-button color="primary" [disabled]="joined" class="pull-right mt-2">
+    <span matTooltip="Already joined" [matTooltipDisabled]="!joined">Join</span></button>
 </nav>
 
 <div class="container mt-5" *ngIf="appState">
