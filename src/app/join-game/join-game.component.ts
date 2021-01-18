@@ -61,6 +61,9 @@ export class JoinGameComponent implements OnInit {
           this.snackBar.open(res.detail.toString(), res.type.toString(), {
             duration: 2000
           });
+          localStorage.setItem('joined', 'true');
+          localStorage.setItem('player', this.joinForm.value.name);
+          this.dialogRef.close();
         },
         error: (err) => {
           console.error(err);
@@ -69,9 +72,7 @@ export class JoinGameComponent implements OnInit {
           });
         }
       });
-      localStorage.setItem('joined', 'true');
-      localStorage.setItem('player', this.joinForm.value.name);
-      this.dialogRef.close();
+
     } catch (err) {
 
     }
