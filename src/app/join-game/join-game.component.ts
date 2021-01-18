@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { LOADIPHLPAPI } from 'dns';
 import { ResponseDTO } from '../responseDTO';
 
@@ -14,12 +14,13 @@ export class JoinGameComponent implements OnInit {
   joinForm: FormGroup;
 
   loading = false;
-  submit = false;
+  res;
 
   constructor(
     public dialogRef: MatDialogRef<JoinGameComponent>,
     private fb: FormBuilder,
-    private http: HttpClient) {
+    private http: HttpClient,
+    private snackBar: MatSnackBar) {
   }
   ngOnInit() {
     this.joinForm = this.fb.group({
@@ -54,8 +55,20 @@ export class JoinGameComponent implements OnInit {
     const formValue = this.joinForm.value;
     console.log(JSON.stringify(formValue))
     try {
-      await this.http.post<ResponseDTO>(`http://localhost:8089/join`, JSON.stringify(formValue)).subscribe(console.log, console.log);
-      this.submit = true;
+      this.http.post<ResponseDTO>(`http://localhost:8089/join`, JSON.stringify(formValue)).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.snackBar.open(res.detail.toString(), res.type.toString(), {
+            duration: 2000
+          });
+        },
+        error: (err) => {
+          console.error(err);
+          this.snackBar.open("Invalid name: There is already a player here with that name", 'Error', {
+            duration: 2000
+          });
+        }
+      });
       localStorage.setItem('joined', 'true');
       localStorage.setItem('player', this.joinForm.value.name);
       this.dialogRef.close();
