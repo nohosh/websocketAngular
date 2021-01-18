@@ -6,10 +6,11 @@
 <div class="container mt-5" *ngIf="appState">
   <ng-container [ngSwitch]="appState.type">
     <app-game-waiting *ngSwitchCase="'Game Waiting'"></app-game-waiting>
-    <app-game-count-down [count]="appState.data" *ngSwitchCase="'Countdown Started'"></app-game-count-down>
+    <app-game-count-down-started [count]="appState.data" *ngSwitchCase="'Countdown Started'">
+    </app-game-count-down-started>
     <app-game-count-down [count]="appState.data" *ngSwitchCase="'Counting Down'"></app-game-count-down>
     <app-game-started *ngSwitchCase="'Game Started'"></app-game-started>
-    <app-leaderboard [players]="appState.data.leader_board" *ngSwitchCase="'Played Round'"></app-leaderboard>
+    <app-leaderboard [rounds]="appState.data" *ngSwitchCase="'Played Round'"></app-leaderboard>
     <app-game-result [winner]="appState.data" *ngSwitchCase="'Game Completed'"></app-game-result>
   </ng-container>
 </div>

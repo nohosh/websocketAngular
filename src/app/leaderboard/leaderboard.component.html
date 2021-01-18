@@ -1,4 +1,5 @@
-<h2 class="font-weight-light text-center" @fade-in>Leaderboard</h2>
-<mat-list @fade>
-    <mat-list-item *ngFor="let player of players">{{player.name}}</mat-list-item>
+<h2 class="text-center mt-2 font-weight-light" @fade> Leaderboard</h2>
+<span class="float-right small">Round <span class="color-primary">{{rounds.round}}</span></span>
+<mat-list @fade-in>
+    <mat-list-item *ngFor="let round of rounds.leader_board">{{round.name}}</mat-list-item>
 </mat-list>

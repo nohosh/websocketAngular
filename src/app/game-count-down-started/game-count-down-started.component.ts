@@ -1,27 +1,24 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Input } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-game-count-down',
-  templateUrl: './game-count-down.component.html',
-  styleUrls: ['./game-count-down.component.scss'],
+  selector: 'app-game-count-down-started',
+  templateUrl: './game-count-down-started.component.html',
+  styleUrls: ['./game-count-down-started.component.scss'],
   animations: [
     trigger('fade', [
       transition('void => *', [
         style({ opacity: 0, transform: 'scale(0.75)' }),
         animate(150, style({ opacity: 1, transform: 'scale(1)' }))
       ])
-
     ])
   ]
 })
-export class GameCountDownComponent implements OnInit {
+export class GameCountDownStartedComponent implements OnInit {
   @Input() count: number;
   constructor() { }
 
   ngOnInit() {
-
   }
 
 }

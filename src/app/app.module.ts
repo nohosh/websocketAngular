@@ -12,6 +12,7 @@ import { GameCountDownComponent } from './game-count-down/game-count-down.compon
 import { GameResultComponent } from './game-result/game-result.component';
 import { GameWaitingComponent } from './game-waiting/game-waiting.component';
 import { GameStartedComponent } from './game-started/game-started.component';
+import { GameCountDownStartedComponent } from './game-count-down-started/game-count-down-started.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { GameStartedComponent } from './game-started/game-started.component';
 
     GameWaitingComponent,
 
-    GameStartedComponent
+    GameStartedComponent,
+
+    GameCountDownStartedComponent
   ],
   imports: [
     BrowserModule,
