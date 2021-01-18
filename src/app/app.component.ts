@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { JoinGameComponent } from './join-game/join-game.component';
 import { GameEventType, SwitchUIEventType } from './game-state/game.types';
 import Game from './game-state/game';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 
 @Component({
