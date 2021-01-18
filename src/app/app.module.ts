@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent, } from './app.component';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';//nativly supports: chrome, opera, firefox. Polyfill for others.
-import { MatButtonModule, MatCardModule, MatListModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatTooltipModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatListModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatTooltipModule, MatBadgeModule } from '@angular/material';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { JoinGameComponent } from './join-game/join-game.component';
@@ -44,7 +44,8 @@ import { GameCountDownStartedComponent } from './game-count-down-started/game-co
     MatInputModule,
     MatSelectModule,
     ReactiveFormsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatBadgeModule
   ],
   entryComponents: [AppComponent, JoinGameComponent],
   providers: [],
