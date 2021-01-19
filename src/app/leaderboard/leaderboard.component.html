@@ -1,7 +1,8 @@
 <h2 class="text-center mt-2 font-weight-light" @fade> Leaderboard</h2>
 
 <div @fade-in class="table-container mx-auto mat-elevation-z8">
-    <span class="elem"><span class="color-primary bold">{{data.round}}</span></span>
+    <span class="round-number"><span matTooltip="Round number" [matTooltipPosition]="'above'"
+            class="color-primary bold">{{data.round}}</span></span>
     <table class="mx-auto" mat-table [dataSource]="data.leader_board">
 
         <ng-container matColumnDef="position">

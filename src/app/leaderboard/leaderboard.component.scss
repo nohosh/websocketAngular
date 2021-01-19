@@ -26,9 +26,10 @@ table {
 .mat-column-name{
       min-width:43%;
 }
-.elem{    
+.round-number{    
     position: absolute;
     top: 1%;
     z-index: 101;
-    right: 2%;
+    right: 3%;
+    cursor: default;
 }
