@@ -9,8 +9,9 @@ mat-list-item {
     color:#673ab7 !important;
   }
 .current-player{
+    background-color: #673ab7;
     .mat-cell {
-        color: #673ab7;
+        color: #fff;
     }
     font-weight: bold;      
 }
