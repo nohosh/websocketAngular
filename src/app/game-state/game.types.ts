@@ -20,7 +20,7 @@ export interface CountingDownEvent {
 }
 export interface PlayerJoinedEvent {
     type: "Player Joined",
-    data: GamePlayer[]//wront type: array a raha ha same.
+    data: GamePlayer[]
 }
 export interface GameWaitingEvent {
     type: "Game Waiting",
@@ -40,7 +40,13 @@ export interface PlayerLeftEvent {
 }
 export interface PlayerRegisteredEvent {
     type: "Player Registered",
-    data: GamePlayer
+    data: {
+        players: GamePlayer[],
+        round: number,
+        numbers: number[],
+        top_score: number,
+        winner: GamePlayer,
+    }
 
 }
 export interface GameResultEvent {

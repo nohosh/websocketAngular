@@ -3,7 +3,6 @@
   <button (click)="join()" mat-raised-button color="primary" [disabled]="joined" class="pull-right mt-2">
     <span matTooltip="Already joined" [matTooltipDisabled]="!joined">Join</span></button>
 </nav>
-
 <div class="container mt-5" *ngIf="appState">
   <ng-container [ngSwitch]="appState.type">
     <app-game-waiting *ngSwitchCase="'Game Waiting'"></app-game-waiting>
@@ -11,7 +10,8 @@
     </app-game-count-down-started>
     <app-game-count-down [count]="appState.data" *ngSwitchCase="'Counting Down'"></app-game-count-down>
     <app-game-started *ngSwitchCase="'Game Started'"></app-game-started>
-    <app-leaderboard [rounds]="appState.data" *ngSwitchCase="'Played Round'"></app-leaderboard>
+    <app-leaderboard [data]="appState.data" [newPlayers]="newPlayers" *ngSwitchCase="'Played Round'">
+    </app-leaderboard>
     <app-game-result [winner]="appState.data" *ngSwitchCase="'Game Completed'"></app-game-result>
   </ng-container>
 </div>

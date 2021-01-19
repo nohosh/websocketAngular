@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MatSnackBar } from '@angular/material';
@@ -54,18 +54,13 @@ export class JoinGameComponent implements OnInit {
     const formValue = this.joinForm.value;
     console.log(JSON.stringify(formValue))
     this.http.post<ResponseDTO>(`http://localhost:8089/join`, JSON.stringify(formValue)).subscribe({
-      next: (res) => {
-        console.log(res);
-        this.snackBar.open(res.detail.toString(), res.type.toString(), {
-          duration: 2000
-        });
+      next: (res: ResponseDTO) => {
         localStorage.setItem('joined', 'true');
         localStorage.setItem('player', this.joinForm.value.name);
         this.dialogRef.close();
       },
-      error: (err) => {
-        console.error(err);
-        this.snackBar.open("Invalid name: There is already a player here with that name", 'Error', {
+      error: (err: HttpErrorResponse) => {
+        this.snackBar.open(err.error.detail, 'Error', {
           duration: 2000
         });
       }

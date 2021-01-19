@@ -1,13 +1,14 @@
 <h2 class="text-center mt-2 font-weight-light" @fade> Leaderboard</h2>
-<span class="float-right small">Round <span class="color-primary">{{rounds.round}}</span></span>
+<span class="float-right small">Round <span class="color-primary">{{data.round}}</span></span>
 <mat-list @fade-in class="mt-4">
-    <mat-list-item class="mx-auto" *ngFor="let round of rounds.leader_board">
-        <div class="current-player w-100" *ngIf="user ===round.name"><span class="float-left" matBadge="W"
-                matBadgeOverlap="false" [matBadgeHidden]="!round.winner">{{round.name}}</span> <span
-                class="float-right">{{round.score}}</span>
+    <mat-list-item class="mx-auto" *ngFor="let player of data.leader_board">
+        <div class="current-player w-100" *ngIf="user ===player.name"><span class="float-left" matBadge="W"
+                matBadgeOverlap="false" [matBadgeHidden]="!player.winner">{{player.name}}</span> <span
+                class="float-right">{{player.score}}</span>
         </div>
-        <div class="w-100" *ngIf="user !==round.name"><span matBadge="W" matBadgeOverlap="false" class="float-left"
-                [matBadgeHidden]="!round.winner">{{round.name}}</span> <span class="float-right">{{round.score}}</span>
+        <div class="w-100" *ngIf="user !==player.name"><span matBadge="W" matBadgeOverlap="false" class="float-left"
+                [matBadgeHidden]="!player.winner">{{player.name}}</span> <span
+                class="float-right">{{player.score}}</span>
         </div>
     </mat-list-item>
 </mat-list>
