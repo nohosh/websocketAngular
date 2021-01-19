@@ -1,14 +1,45 @@
 <h2 class="text-center mt-2 font-weight-light" @fade> Leaderboard</h2>
-<span class="float-right small">Round <span class="color-primary">{{data.round}}</span></span>
-<mat-list @fade-in class="mt-4">
-    <mat-list-item class="mx-auto" *ngFor="let player of data.leader_board">
-        <div class="current-player w-100" *ngIf="user ===player.name"><span class="float-left" matBadge="W"
-                matBadgeOverlap="false" [matBadgeHidden]="!player.winner">{{player.name}}</span> <span
-                class="float-right">{{player.score}}</span>
-        </div>
-        <div class="w-100" *ngIf="user !==player.name"><span matBadge="W" matBadgeOverlap="false" class="float-left"
-                [matBadgeHidden]="!player.winner">{{player.name}}</span> <span
-                class="float-right">{{player.score}}</span>
-        </div>
-    </mat-list-item>
-</mat-list>
+
+<div @fade-in class="table-container mx-auto mat-elevation-z8">
+    <span class="elem"><span class="color-primary bold">{{data.round}}</span></span>
+    <table class="mx-auto" mat-table [dataSource]="data.leader_board">
+
+        <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> Rank </th>
+            <td mat-cell *matCellDef="let rank = index"> {{rank+1}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element ">
+                <span matBadge="W" matBadgeOverlap="false" matBadgePosition="before" matBadgeSize="small"
+                    [matBadgeHidden]="!element.winner">{{element.name}}</span>
+                <span *ngIf="newPlayers.includes(element.name)">
+                    <mat-icon aria-hidden="false" class="color-primary" [inline]="true" aria-label="Example home icon">
+                        fiber_new
+                    </mat-icon>
+                </span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lower">
+            <th mat-header-cell *matHeaderCellDef> First </th>
+            <td mat-cell *matCellDef="let element "> {{element.lower}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="upper">
+            <th mat-header-cell *matHeaderCellDef> Second </th>
+            <td mat-cell *matCellDef="let element "> {{element.upper}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="score">
+            <th mat-header-cell *matHeaderCellDef> Score </th>
+            <td mat-cell *matCellDef="let element " class="font-weight-bold"> {{element.score}} </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row [ngClass]="{'current-player': user === row.name}" *matRowDef=" let row; columns: displayedColumns;">
+        </tr>
+    </table>
+</div>

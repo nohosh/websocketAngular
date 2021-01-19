@@ -3,7 +3,7 @@
   <button (click)="join()" mat-raised-button color="primary" [disabled]="joined" class="pull-right mt-2">
     <span matTooltip="Already joined" [matTooltipDisabled]="!joined">Join</span></button>
 </nav>
-<div class="container mt-5" *ngIf="appState">
+<div class="container-fluid mt-2" *ngIf="appState">
   <ng-container [ngSwitch]="appState.type">
     <app-game-waiting *ngSwitchCase="'Game Waiting'"></app-game-waiting>
     <app-game-count-down-started [count]="appState.data" *ngSwitchCase="'Countdown Started'">

@@ -5,12 +5,30 @@ mat-list-item {
     border-radius: 5px;
     text-align: center;
 }
-
 .color-primary{
     color:#673ab7 !important;
   }
-
-  .current-player{
-      font-weight: bold;
-      color:#673ab7;
-  }
+.current-player{
+    .mat-cell {
+        color: #673ab7;
+    }
+    font-weight: bold;      
+}
+table {
+    width: 100%;   
+}
+.table-container {
+    max-height: 70vh;
+    max-width: 450px;
+    overflow: auto;
+    position: relative;
+}
+.mat-column-name{
+      min-width:43%;
+}
+.elem{    
+    position: absolute;
+    top: 1%;
+    z-index: 101;
+    right: 2%;
+}

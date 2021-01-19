@@ -27,6 +27,7 @@ export class LeaderboardComponent implements OnInit {
   @Input() newPlayers: string[];
   constructor() { }
   user;
+  displayedColumns: string[] = ['position', 'name', 'lower', 'upper', 'score'];
   ngOnInit() {
     console.log(this.newPlayers)
     if (localStorage.getItem('joined')) {
