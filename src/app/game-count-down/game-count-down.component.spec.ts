@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { GameCountDownComponent } from './game-count-down.component';
 
@@ -8,9 +9,10 @@ describe('GameCountDownComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GameCountDownComponent ]
+      declarations: [GameCountDownComponent],
+      imports: [NoopAnimationsModule]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,17 +1,40 @@
+import { HttpClientModule } from '@angular/common/http';
 import { TestBed, async } from '@angular/core/testing';
+import { MatBadgeModule, MatDialogModule, MatIconModule, MatSnackBarModule, MatTableModule, MatTooltip, MatTooltipModule } from '@angular/material';
+import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { GameCountDownStartedComponent } from './game-count-down-started/game-count-down-started.component';
+import { GameCountDownComponent } from './game-count-down/game-count-down.component';
+import { GameResultComponent } from './game-result/game-result.component';
+import { GameStartedComponent } from './game-started/game-started.component';
+import { GameWaitingComponent } from './game-waiting/game-waiting.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MatDialogModule,
+        MatTooltipModule,
+        MatTableModule,
+        MatBadgeModule,
+        MatIconModule,
+        HttpClientModule,
+        MatSnackBarModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        GameWaitingComponent,
+        GameCountDownComponent,
+        GameCountDownStartedComponent,
+        GameStartedComponent,
+        GameWaitingComponent,
+        LeaderboardComponent,
+        GameResultComponent
       ],
     }).compileComponents();
   }));
@@ -22,16 +45,15 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ws-app'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('ws-app');
-  });
+  // it(`should have as title 'WsApp'`, () => {
+  //   const fixture = TestBed.createComponent(AppComponent);
+  //   const app = fixture.debugElement.componentInstance;
+  //   expect(app.title).toEqual('WsApp');
+  // });
+  // it(`should have as title 'WsApp'`, () => {
+  //   const fixture = TestBed.createComponent(AppComponent);
+  //   const app = fixture.debugElement.componentInstance;
+  //   expect(app.title).toBe('WsApp');
+  // });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('ws-app app is running!');
-  });
 });
