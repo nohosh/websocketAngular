@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import initWebSocket from './websocket';
 import { MatDialog } from '@angular/material/dialog';
 import { JoinGameComponent } from './join-game/join-game.component';
@@ -7,6 +7,7 @@ import { GameEventType, NotificationEventType, SwitchUIEventType } from './game-
 import Game from './game-state/game';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { MatSnackBar } from '@angular/material';
+import { DOCUMENT } from '@angular/common';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class AppComponent implements OnInit {
   constructor(
     private http: HttpClient,
     public dialog: MatDialog,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    @Inject(DOCUMENT) private _doc: any) { }
   appState: SwitchUIEventType;
   joined = JSON.parse(localStorage.getItem('joined'));
   newPlayers = [];
@@ -49,6 +51,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this._doc.title);
     if (!this.joined) {
       localStorage.setItem('joined', 'false');
       this.joined = JSON.parse(localStorage.getItem(this.joined));

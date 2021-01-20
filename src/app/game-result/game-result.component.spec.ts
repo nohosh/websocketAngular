@@ -18,11 +18,21 @@ describe('GameResultComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(GameResultComponent);
         component = fixture.componentInstance;
+        component.winner = {
+            name: 'test',
+            lower: 2,
+            upper: 1,
+            score: 21,
+            winner: false
+        }
         fixture.detectChanges();
-        fixture.destroy();
-
     });
-
+    it('should init result', async () => {
+        fixture.detectChanges();
+        fixture.whenStable().then(() => {
+            expect(component).toBeTruthy();
+        });
+    });
 
 
 });
