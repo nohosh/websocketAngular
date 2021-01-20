@@ -27,7 +27,7 @@ describe('GameResultComponent', () => {
         }
         fixture.detectChanges();
     });
-    it('should init result', async () => {
+    it('should init winner', async () => {
         fixture.detectChanges();
         fixture.whenStable().then(() => {
             expect(component).toBeTruthy();

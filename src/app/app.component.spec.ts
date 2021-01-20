@@ -44,15 +44,10 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
-  // it(`should have as title 'WsApp'`, () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   const app = fixture.debugElement.componentInstance;
-  //   expect(app.title).toEqual(undefined);
-  // });
-  // it(`should have as title 'WsApp'`, () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   const app = fixture.debugElement.parent;
-  //   expect(app.styles).toBe('WsApp');
-  // });
-
+  it(`should have as Heading 'The Game'`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const dom = fixture.debugElement.nativeElement;
+    expect(dom.querySelector('a').textContent).toContain('The Game');
+  });
 });
