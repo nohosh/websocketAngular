@@ -1,6 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
-import { GamePlayer } from '../game-state/game.types';
+import { GamePlayer } from '../state/game.types';
 
 @Component({
   selector: 'app-game-result',
@@ -22,7 +22,9 @@ import { GamePlayer } from '../game-state/game.types';
   ]
 })
 export class GameResultComponent implements OnInit {
+
   @Input() winner: GamePlayer
+  
   constructor() { }
 
   ngOnInit() {

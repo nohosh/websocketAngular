@@ -1,7 +1,9 @@
 <nav class="navbar navbar-light bg-light">
   <a class="navbar-brand">The Game</a>
-  <button (click)="join()" mat-raised-button color="primary" [disabled]="joined" class="pull-right mt-2">
-    <span matTooltip="Already joined" [matTooltipDisabled]="!joined">Join</span></button>
+  <button *ngIf="!user" (click)="join()" mat-raised-button color="primary" class="pull-right mt-2">
+    <span>Join</span>
+  </button>
+  <h3 *ngIf="!!user" matTooltip="You have joined" class="color-primary lead">{{user}}</h3>
 </nav>
 <div class="container-fluid mt-2" *ngIf="appState" CUSTOM_ELEMENTS_SCHEMA>
   <ng-container [ngSwitch]="appState.type">

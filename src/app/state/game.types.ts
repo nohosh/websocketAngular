@@ -2,6 +2,7 @@ export interface ActiveRoundDTO {
     leader_board: GamePlayer[],
     round: number
 }
+
 export interface GamePlayer {
     name: string,
     upper: number,
@@ -10,36 +11,55 @@ export interface GamePlayer {
     winner: boolean
 }
 
+export enum GameEvents {
+    PlayerRound = "Played Round",
+    CountingDown = "Counting Down",
+    PlayerJoined = "Player Joined",
+    GameWaiting= "Game Waiting",
+    CountDownStarted = "Countdown Started",
+    GameStarted = "Game Started",
+    PlayerLeft = "Player Left",
+    PlayerRegisterd = "Player Registered",
+    GameCompleted = "Game Completed"
+}
+
 export interface ActiveRoundEvent {
-    type: "Played Round",
+    type: GameEvents.PlayerRound,
     data: ActiveRoundDTO
 }
+
 export interface CountingDownEvent {
-    type: "Counting Down",
+    type: GameEvents.CountingDown,
     data: number
 }
+
 export interface PlayerJoinedEvent {
-    type: "Player Joined",
+    type: GameEvents.PlayerJoined,
     data: GamePlayer[]
 }
+
 export interface GameWaitingEvent {
-    type: "Game Waiting",
+    type: GameEvents.GameWaiting,
     data: null
 }
+
 export interface CountDownStartEvent {
-    type: "Countdown Started",
+    type: GameEvents.CountDownStarted,
     data: number
 }
+
 export interface GameStartedEvent {
-    type: "Game Started",
+    type: GameEvents.GameStarted
     data: number
 }
+
 export interface PlayerLeftEvent {
-    type: "Player Left",
+    type: GameEvents.PlayerLeft,
     data: null;
 }
+
 export interface PlayerRegisteredEvent {
-    type: "Player Registered",
+    type: GameEvents.PlayerRegisterd,
     data: {
         players: GamePlayer[],
         round: number,
@@ -47,14 +67,16 @@ export interface PlayerRegisteredEvent {
         top_score: number,
         winner: GamePlayer,
     }
-
 }
+
 export interface GameResultEvent {
-    type: "Game Completed",
+    type: GameEvents.GameCompleted,
     data: GamePlayer
 }
 
-//other events ...
+//Grouped events ...
 export type NotificationEventType = PlayerJoinedEvent | PlayerRegisteredEvent | PlayerLeftEvent;
+
 export type SwitchUIEventType = CountingDownEvent | CountDownStartEvent | GameStartedEvent | GameWaitingEvent | GameResultEvent | ActiveRoundEvent;
+
 export type GameEventType = SwitchUIEventType | NotificationEventType

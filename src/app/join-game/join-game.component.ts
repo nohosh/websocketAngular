@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MatSnackBar } from '@angular/material';
-import { ResponseDTO } from '../responseDTO';
+import Game from '../state/game';
 
 @Component({
   selector: 'app-join-game',
@@ -12,9 +12,6 @@ import { ResponseDTO } from '../responseDTO';
 export class JoinGameComponent implements OnInit {
   joinForm: FormGroup;
 
-  loading = false;
-  res;
-
   constructor(
     public dialogRef: MatDialogRef<JoinGameComponent>,
     private fb: FormBuilder,
@@ -22,6 +19,7 @@ export class JoinGameComponent implements OnInit {
     private snackBar: MatSnackBar) {
   }
   ngOnInit() {
+
     this.joinForm = this.fb.group({
       name: ['', [
         Validators.required
@@ -38,26 +36,26 @@ export class JoinGameComponent implements OnInit {
       ]]
     });
   }
+
   get name() {
     return this.joinForm.get('name');
   }
+
   get first() {
     return this.joinForm.get('first');
   }
+
   get second() {
     return this.joinForm.get('second');
   }
-  x = 0;
+
   async submitHandler() {
-    this.loading = true;
-    this.x++;
     const formValue = this.joinForm.value;
-    console.log(JSON.stringify(formValue))
-    this.http.post<ResponseDTO>(`http://localhost:8089/join`, JSON.stringify(formValue)).subscribe({
-      next: (res: ResponseDTO) => {
-        localStorage.setItem('joined', 'true');
+    this.http.post(`http://localhost:8089/join`, JSON.stringify(formValue)).subscribe({
+      next: () => {
         localStorage.setItem('player', this.joinForm.value.name);
         this.dialogRef.close();
+        Game.PlayereJoinedEvent.complete();
       },
       error: (err: HttpErrorResponse) => {
         this.snackBar.open(err.error.detail, 'Error', {

@@ -1,13 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import initWebSocket from './websocket';
 import { MatDialog } from '@angular/material/dialog';
 import { JoinGameComponent } from './join-game/join-game.component';
-import { GameEventType, NotificationEventType, SwitchUIEventType } from './game-state/game.types';
-import Game from './game-state/game';
-import { animate, style, transition, trigger } from '@angular/animations';
+import { NotificationEventType, SwitchUIEventType } from './state/game.types';
+import Game from './state/game';
 import { MatSnackBar } from '@angular/material';
-import { DOCUMENT } from '@angular/common';
+
 
 
 @Component({
@@ -16,19 +14,19 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(
-    private http: HttpClient,
-    public dialog: MatDialog,
-    private snackBar: MatSnackBar,
-    @Inject(DOCUMENT) private _doc: any) { }
   appState: SwitchUIEventType;
-  joined = JSON.parse(localStorage.getItem('joined'));
+  user = localStorage.getItem('player');
   newPlayers = [];
+
+  constructor(
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar) { }
+  
   join() {
     const dialogRef = this.dialog.open(JoinGameComponent, {
       width: '250px'
     });
-    dialogRef.afterClosed().subscribe(() => this.joined = JSON.parse(localStorage.getItem('joined')));
+    dialogRef.afterClosed().subscribe(() => console.log('closed'));
   }
 
   getNotificationMsg(evt: NotificationEventType) {
@@ -51,12 +49,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this._doc.title);
-    if (!this.joined) {
-      localStorage.setItem('joined', 'false');
-      this.joined = JSON.parse(localStorage.getItem(this.joined));
-    }
+
     initWebSocket();
+    
     Game.SwitchUIEvent.subscribe(event => {
       if (event.type === "Game Completed") this.newPlayers = [];
       this.appState = event
@@ -68,6 +63,9 @@ export class AppComponent implements OnInit {
         duration: 2000
       });
     });
+    Game.PlayereJoinedEvent.subscribe({
+      complete: () => this.user=localStorage.getItem('player')
+    })
   }
 }
 

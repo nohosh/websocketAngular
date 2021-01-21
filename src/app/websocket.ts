@@ -1,25 +1,23 @@
 import { webSocket } from 'rxjs/webSocket';
-import { GameEventType, NotificationEventType } from './game-state/game.types'
-import Game from './game-state/game'
-
+import { GameEvents, GameEventType } from './state/game.types'
+import Game from './state/game'
 
 const socket = webSocket(`ws://localhost:8089/subscribe`);
 const initWebSocket = () => {
-
     socket.subscribe(
         (event: GameEventType) => {
             switch (event.type) {
-                case "Countdown Started":
-                case "Counting Down":
-                case "Game Started":
-                case "Game Waiting":
-                case "Played Round":
-                case "Game Completed":
+                case GameEvents.CountDownStarted:
+                case GameEvents.CountingDown:
+                case GameEvents.GameStarted:
+                case GameEvents.GameWaiting:
+                case GameEvents.PlayerRound:
+                case GameEvents.GameCompleted:
                     Game.SwitchUIEvent.next(event)
                     break;
-                case "Player Joined":
-                case "Player Left":
-                case "Player Registered":
+                case GameEvents.PlayerJoined:
+                case GameEvents.PlayerLeft:
+                case GameEvents.PlayerRegisterd:
                     Game.NotificationEvent.next(event)
                     break;
             }

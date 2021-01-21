@@ -1,7 +1,7 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { ActiveRoundDTO, GamePlayer } from '../game-state/game.types';
+import { ActiveRoundDTO } from '../state/game.types';
 
 @Component({
   selector: 'app-leaderboard',
@@ -23,16 +23,17 @@ import { ActiveRoundDTO, GamePlayer } from '../game-state/game.types';
   ]
 })
 export class LeaderboardComponent implements OnInit {
+  
   @Input() data: ActiveRoundDTO[];
-  @Input() newPlayers: string[];
-  constructor() { }
-  user;
-  displayedColumns: string[] = ['position', 'name', 'lower', 'upper', 'score'];
-  ngOnInit() {
-    console.log(this.newPlayers)
-    if (localStorage.getItem('joined')) {
-      this.user = localStorage.getItem('player');
-    }
-  }
 
+  @Input() newPlayers: string[];
+
+  user = localStorage.getItem('player');
+  displayedColumns: string[] = ['position', 'name', 'lower', 'upper', 'score'];
+
+  constructor() { }
+  
+  ngOnInit() {
+    console.log(this.newPlayers)    
+  }
 }

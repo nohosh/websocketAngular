@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent, } from './app.component';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';//nativly supports: chrome, opera, firefox. Polyfill for others.
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';//nativly supports: chrome, opera, firefox. Polyfill for others.
 import { MatButtonModule, MatCardModule, MatListModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatTooltipModule, MatBadgeModule, MatSnackBarModule, MatIconModule, MatTableModule } from '@angular/material';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -52,7 +52,6 @@ import { GameCountDownStartedComponent } from './game-count-down-started/game-co
   ],
   entryComponents: [AppComponent, JoinGameComponent],
   providers: [],
-  bootstrap: [AppComponent],
-  // exports: [MatCardModule]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
