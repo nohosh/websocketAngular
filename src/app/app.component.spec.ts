@@ -44,10 +44,10 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
-  it(`should have as Heading 'The Game'`, () => {
+  it(`should have as Heading 'Funny Game'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const dom = fixture.debugElement.nativeElement;
-    expect(dom.querySelector('a').textContent).toContain('The Game');
+    expect(dom.querySelector('a').textContent).toContain('Funny Game');
   });
 });
