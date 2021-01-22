@@ -1,4 +1,4 @@
-import { animate, style, transition, trigger } from '@angular/animations';
+import { animate, animation, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
 import { GamePlayer } from '../state/game.types';
 
@@ -15,8 +15,8 @@ import { GamePlayer } from '../state/game.types';
     ]),
     trigger('fade-in', [
       transition('void => *', [
-        style({ opacity: 0, transform: 'translateY(-5%)' }),
-        animate(200, style({ opacity: 1, transform: 'translateY(0)' }))
+        style({ opacity: 0, transform: 'translateY(-25%)' }),
+        animate(250, style({ opacity: 1, transform: 'translateY(0)' }))
       ])
     ])
   ]
