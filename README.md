@@ -1,10 +1,14 @@
-# WsApp
+# Web-Socket-App
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.19.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+### Before Running
+
+Run `sbbg_server_go` for web socket server. On  `port:8089`.
 
 ## Code scaffolding
 
@@ -20,7 +24,7 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/). For UI components
 
 ## Further help
 
